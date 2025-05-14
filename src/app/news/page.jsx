@@ -1,21 +1,15 @@
-import NewsPage from "@/organisms/copilot/NewsPage";
-import VoicePage from "@/organisms/copilot/VoicePage";
-import CallersPage from "@/organisms/copilot/CallersPage";
-import { Toaster } from "react-hot-toast";
+import NewsPage from '@/organisms/copilot/NewsPage'
+import VoicePage from '@/organisms/copilot/VoicePage'
+import CallersPage from '@/organisms/copilot/CallersPage'
+import { Toaster } from 'react-hot-toast'
 
 export default function Page() {
-  const screen = "news";
+	const screen = 'news'
 
-  return (
-    <div className="flex gap-5 justify-start h-full min-h-full w-full p-7">
-      {screen == "news" ? (
-        <NewsPage />
-      ) : screen == "voice" ? (
-        <VoicePage />
-      ) : (
-        <CallersPage />
-      )}
-      <Toaster />
-    </div>
-  );
+	return (
+		<div className='z-50 relative flex justify-start gap-5 bg-zinc-950 w-full h-full min-h-full'>
+			{screen == 'news' ? <NewsPage /> : screen == 'voice' ? <VoicePage /> : <CallersPage />}
+			<Toaster />
+		</div>
+	)
 }

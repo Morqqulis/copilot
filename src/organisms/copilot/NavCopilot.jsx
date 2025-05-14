@@ -51,8 +51,8 @@ export default function NavCopilot() {
   }, [selectedRegion]);
 
   return (
-    <nav className="flex flex-col justify-start w-full mb-14">
-      <div className="flex justify-between items-center w-full mb-5">
+    <nav className="flex flex-col justify-start mb-14 pt-4 w-full text-white">
+      <div className="flex justify-between items-center mb-5 w-full">
         <ul className="flex gap-5 uppercase">
           {tabsData.map(({ title, value }, index) => {
             return (
@@ -80,7 +80,7 @@ export default function NavCopilot() {
 
           <button className="w-10 shrink-0">
             <Image
-              className=" text-white"
+              className="text-white"
               src={settingIcon}
               alt="settings"
               width={30}

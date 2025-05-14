@@ -28,7 +28,7 @@ export default function SidePanelNewsWeather() {
 
   return (
     <div className="w-full">
-      <div className="flex gap-2 items-center mb-3">
+      <div className="flex items-center gap-2 mb-3">
         <Dropdown
           dropDownValue={selectedRegion}
           label="Region"
@@ -39,7 +39,7 @@ export default function SidePanelNewsWeather() {
 
       <button
         onClick={fetchNews}
-        className="flex items-center justify-center gap-3 bg-cyan-600 hover:bg-cyan-700 whitespace-nowrap px-3 py-2 rounded-md w-full mb-5"
+        className="flex justify-center items-center gap-3 bg-cyan-600 hover:bg-cyan-700 mb-5 px-3 py-2 rounded-md w-full whitespace-nowrap"
       >
         Fetch News & Weather
         <SpinnerLoader
@@ -53,12 +53,12 @@ export default function SidePanelNewsWeather() {
         />
       </button>
 
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 text-white">
         {["news", "weather", "travel"].map((segmentName) => {
           return (
             <li key={segmentName} className="">
-              <div className="flex gap-4 bg-bigBg px-4 py-1 rounded-md mb-1 text-center">
-                <span className="uppercase mx-auto">{segmentName}</span>
+              <div className="flex gap-4 bg-bigBg mb-1 px-4 py-1 rounded-md text-center">
+                <span className="mx-auto uppercase">{segmentName}</span>
               </div>
               <SpinnerLoader
                 className={
@@ -106,7 +106,7 @@ function DisplayNewsSegmentElements({ segmentName, segmentStories }) {
 function EmptyListPlaceholder({ segmentName, segmentStories }) {
   if (segmentStories[segmentName]) return;
   return (
-    <div className="mx-auto text-center w-full mb-4 text-gray-500 text-sm flex flex-col items-center">
+    <div className="flex flex-col items-center mx-auto mb-4 w-full text-gray-500 text-sm text-center">
       <span>fetch news to get scripts</span>
     </div>
   );

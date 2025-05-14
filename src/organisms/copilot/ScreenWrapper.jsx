@@ -8,10 +8,10 @@ import logo from "@/assets/logo.svg";
 export default function ScreenWrapper({ children }) {
   return (
     <>
-      <aside className="bg-sidePanel p-5 h-full rounded-md w-[min(30rem,50%)]">
+      <aside className="bg-sidePanel p-5 rounded-md w-[min(30rem,50%)] h-full min-h-svh">
         <Link href="/">
           <Image
-            className="w-full mb-7 cursor-pointer"
+            className="mb-7 w-full cursor-pointer"
             src={logo}
             alt="logo"
             width={28}
@@ -19,7 +19,7 @@ export default function ScreenWrapper({ children }) {
           />
         </Link>
 
-        <div className="w-full mb-5 mx-auto text-center">
+        <div className="mx-auto mb-5 w-full text-center">
           <UtcClock />
         </div>
 

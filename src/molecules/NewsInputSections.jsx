@@ -58,18 +58,18 @@ export default function NewsInputSections() {
       {/* NEWS SECTION */}
       <li className="w-full">
         <button
-          className="flex items-center justify-center gap-2 px-3 text-blue-400 border hover:text-blue-200 border-blue-600 hover:border-blue-400 rounded-md w-full py-2 uppercase font-medium"
+          className="flex justify-center items-center gap-2 px-3 py-2 border border-blue-600 hover:border-blue-400 rounded-md w-full font-medium text-blue-400 hover:text-blue-200 uppercase"
           onClick={() => generateNewsHandle("news")}
         >
           generate News
           <SpinnerLoader className={isLoadingSegment["news"] ? "" : "hidden"} />
         </button>
       </li>
-      <li className="w-full mx-auto">
+      <li className="mx-auto w-full">
         <ManualAudioSection index={0} segmentName={"intro"} />
       </li>
       <GenerateSegmentAreas segmentName={"news"} />
-      <li className="w-full mx-auto">
+      <li className="mx-auto w-full">
         <ManualAudioSection index={0} segmentName={"outro"} />
       </li>
       <ExportDownloadBtns title={"news"} />
@@ -78,7 +78,7 @@ export default function NewsInputSections() {
 
       <li className="w-full">
         <button
-          className="flex items-center justify-center gap-2 px-3 text-blue-400 border hover:text-blue-200 border-blue-600 hover:border-blue-400 rounded-md w-full py-2 uppercase font-medium"
+          className="flex justify-center items-center gap-2 px-3 py-2 border border-blue-600 hover:border-blue-400 rounded-md w-full font-medium text-blue-400 hover:text-blue-200 uppercase"
           onClick={() => generateNewsHandle("weather")}
         >
           generate Weather
@@ -93,7 +93,7 @@ export default function NewsInputSections() {
       {/* TRAVEL SECTION */}
       <li className="w-full">
         <button
-          className="flex items-center justify-center gap-2 px-3 text-blue-400 border hover:text-blue-200 border-blue-600 hover:border-blue-400 rounded-md w-full py-2 uppercase font-medium"
+          className="flex justify-center items-center gap-2 px-3 py-2 border border-blue-600 hover:border-blue-400 rounded-md w-full font-medium text-blue-400 hover:text-blue-200 uppercase"
           onClick={() => generateNewsHandle("travel")}
         >
           generate travel
@@ -117,7 +117,7 @@ function GenerateSegmentAreas({ segmentName }) {
     const { content, selected, enhancedContent } = segmentDataArray[i];
     if (!enhancedContent || !selected) continue;
     segmentHtmlElements.push(
-      <li key={content} className="w-full mx-auto">
+      <li key={content} className="mx-auto w-full">
         <ManualAudioSection index={i} segmentName={segmentName} />
       </li>
     );
@@ -197,7 +197,7 @@ function ExportDownloadBtns({ title }) {
           <button
             key={btnText}
             onClick={() => clickHandle(title)}
-            className="w-full whitespace-nowrap uppercase border border-blue-700 rounded-md px-9 py-3 flex gap-2 items-center justify-center"
+            className="flex justify-center items-center gap-2 px-9 py-3 border border-blue-700 rounded-md w-full uppercase whitespace-nowrap"
           >
             <Image src={icon} alt="mic logo" width={15} height={15} />
             {btnText}

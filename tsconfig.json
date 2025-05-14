@@ -32,6 +32,6 @@
     "src/organisms/**/*",
     "src/molecules/**/*",
     "src/atoms/**/*"
-  ],
+, "src/components/ui/background-beams.jsx"  ],
   "exclude": ["node_modules"]
 }
