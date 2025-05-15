@@ -30,10 +30,10 @@ export default function NavCopilot() {
 
 	useEffect(() => {
 		const category = screen == 'voice' ? 'voicetracking' : screen == 'callers' ? 'caller' : screen
-		
+
 		// Получаем корректный код страны для API voices
 		const apiCountryCode = getVoicesApiCountryCode(selectedRegion)
-		
+
 		console.log('Original region:', selectedRegion, 'Voices API country code:', apiCountryCode)
 
 		axios

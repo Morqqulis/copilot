@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const urlEndpoint = "https://copilot.radiostation.ai/api/enhance_story";
 
@@ -6,7 +7,7 @@ const urlEndpoint = "https://copilot.radiostation.ai/api/enhance_story";
  * @typedef RequestData
  * @prop {string} story
  * @prop {string} type
- * @prop {string} lang
+ * @prop {string} language
  */
 
 /**
@@ -22,24 +23,25 @@ export default async function enhanceNewsSegmentScript(
   updateSegmentScript,
   updateSegmentScriptLoading
 ) {
-  console.log("enhancing segment news...");
+  console.log(`Enhancing ${segmentName} segment in language: ${requestData.language || 'not specified'}`);
   updateSegmentScriptLoading(segmentName, true);
+  
   const requestBody = {
-    story: "icecream prices gone up",
-    type: "news",
-    language: "no",
-    ...requestData,
+    story: requestData.story || "default news content",
+    type: segmentName || "news",
+    language: requestData.language || "en",
   };
+  
   await axios
     .post(urlEndpoint, requestBody)
     .then((response) => {
       updateSegmentScript(segmentName, response.data.data.enhanced_script);
       updateSegmentScriptLoading(segmentName, false);
-      console.log("enhancing segment news...successfull !");
+      console.log(`Enhancing ${segmentName} segment... successful!`);
     })
     .catch((error) => {
       console.error(error);
-      toast.error("something went wrong");
+      toast.error("Something went wrong while enhancing content");
       updateSegmentScriptLoading(segmentName, false);
     });
 }

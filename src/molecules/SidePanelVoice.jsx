@@ -28,7 +28,7 @@ export default function SidePanelNewsWeather() {
             setPrevious((prev) => ({ ...prev, artist: e.target.value }))
           }
         />
-        <li className="border border-red-600 text-red-600 py-2 rounded-md uppercase">
+        <li className="py-2 border border-red-600 rounded-md text-red-600 uppercase">
           {'<radio copilot>'}
         </li>
         <TextInput
@@ -53,7 +53,7 @@ export default function SidePanelNewsWeather() {
 function TextInput({ label, value, onChange }) {
   return (
     <input
-      className="bg-bigBg px-5 py-2 rounded-md border-0 ring-inset"
+      className="bg-bigBg px-5 py-2 border-0 rounded-md ring-inset"
       type="text"
       placeholder={label}
       value={value}

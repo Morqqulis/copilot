@@ -1,21 +1,23 @@
 "use client";
 
-import exportIcon from "@/assets/icons/export-icon.svg";
-import Image from "next/image";
-import { useState } from "react";
-import ManualAudioSection from "@/molecules/ManualAudioSection";
-import enhanceNewsSegmentScript from "@/methods/enhanceNewsSegmentScript";
-import SpinnerLoader from "@/atoms/SpinnerLoader";
-import saveIcon from "@/assets/icons/save-icon.svg";
-import exportAudioToCloud from "@/methods/exportAudioToCloud";
-import exportImportAudio from "@/methods/exportImportAudio";
-import useCopilotStore from "@/stores/useCopilotStore";
+import exportIcon from "@/assets/icons/export-icon.svg"
+import saveIcon from "@/assets/icons/save-icon.svg"
+import SpinnerLoader from "@/atoms/SpinnerLoader"
+import enhanceNewsSegmentScript from "@/methods/enhanceNewsSegmentScript"
+import exportAudioToCloud from "@/methods/exportAudioToCloud"
+import exportImportAudio from "@/methods/exportImportAudio"
+import ManualAudioSection from "@/molecules/ManualAudioSection"
+import useCopilotStore from "@/stores/useCopilotStore"
+import { getApiCountryCode, getLanguageForCountry } from "@/utils/countryUtils"
+import Image from "next/image"
+import { useState } from "react"
 
 export default function NewsInputSections() {
   const segmentStories = useCopilotStore((state) => state.segmentStories);
   const updateSelectedStories = useCopilotStore(
     (state) => state.updateSelectedStories
   );
+  const selectedRegion = useCopilotStore((state) => state.selectedRegion);
   const [isLoadingSegment, setIsLoadingSegment] = useState({
     news: false,
     weather: false,
@@ -25,6 +27,13 @@ export default function NewsInputSections() {
   function generateNewsHandle(segmentName) {
     const newsArray = segmentStories[segmentName];
     if (!newsArray) return;
+    
+    // Получаем язык на основе выбранного региона
+    const countryCode = getApiCountryCode(selectedRegion);
+    const language = getLanguageForCountry(countryCode);
+    
+    console.log(`Generating ${segmentName} in language: ${language}, region: ${selectedRegion}`);
+    
     if (segmentName == "travel") {
       updateSelectedStories("travel", 0, {
         ...newsArray[0],
@@ -32,10 +41,38 @@ export default function NewsInputSections() {
       });
       return;
     }
+    
+    // Для сегмента weather просто копируем контент в enhancedContent
+    if (segmentName === "weather") {
+      setIsLoadingSegment((prev) => ({
+        ...prev,
+        [segmentName]: true
+      }));
+      
+      // Небольшая задержка для имитации загрузки
+      setTimeout(() => {
+        updateSelectedStories(segmentName, 0, {
+          ...newsArray[0],
+          enhancedContent: newsArray[0].content,
+        });
+        
+        setIsLoadingSegment((prev) => ({
+          ...prev,
+          [segmentName]: false
+        }));
+      }, 500);
+      
+      return;
+    }
+    
+    // Для новостей используем улучшение контента через API
     for (let i = 0; i < newsArray.length; i++) {
       enhanceNewsSegmentScript(
         segmentName,
-        { story: newsArray[i].content },
+        { 
+          story: newsArray[i].content,
+          language: language  // Передаем выбранный язык в API
+        },
         (segmentName, enhancedContent) => {
           const newStory = {
             ...segmentStories[segmentName][i],
@@ -191,7 +228,7 @@ function ExportDownloadBtns({ title }) {
     },
   ];
   return (
-    <div className={`flex w-full items-center gap-2 mt-3`}>
+    <div className={`flex w-full items-center gap-2 mt-3 text-white`}>
       {exportUploadBtnsData.map(({ btnText, clickHandle, icon, label }) => {
         return (
           <button
