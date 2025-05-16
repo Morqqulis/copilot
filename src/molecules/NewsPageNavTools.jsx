@@ -1,5 +1,5 @@
-import DropdownCopilot from "./Dropdown";
-import useCopilotStore from "@/stores/useCopilotStore";
+import useCopilotStore from "@/stores/useCopilotStore"
+import DropdownCopilot from "./Dropdown"
 
 const dropDownOptions = [
   { code: "it", name: "Italian" },
@@ -29,7 +29,7 @@ export default function NewsPageNavTools() {
         screen == "news" ? "" : "hidden"
       } w-full flex justify-center items-center gap-5`}
     >
-      <div className="max-w-52 flex items-center justify-center gap-3">
+      <div className="flex justify-center items-center gap-3 max-w-52">
         <span className="font-normal">Translate</span>
         <DropdownCopilot
           dropDownValue={translationLanguage}
@@ -42,15 +42,15 @@ export default function NewsPageNavTools() {
       {/* automatic mode switch  */}
       <div className="w-fit">
         <label className={`inline-flex items-center cursor-pointer mx-auto`}>
-          <span className="text-sm font-medium text-gray-300">Manual</span>
+          <span className="font-medium text-gray-300 text-sm">Manual</span>
           <input
             onChange={(e) => updateAutomaticMode(e.target.checked)}
             defaultChecked={isAutomaticMode}
             type="checkbox"
             className="sr-only peer"
           />
-          <div className="mx-4 relative w-11 h-6 outline-none rounded-full peer bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all border-gray-600 peer-checked:bg-blue-600"></div>
-          <span className="text-sm font-medium text-gray-300">Automatic</span>
+          <div className="peer after:top-[2px] after:absolute relative bg-gray-700 after:bg-white peer-checked:bg-blue-600 mx-4 after:border border-gray-600 after:border-gray-300 peer-checked:after:border-white rounded-full after:rounded-full outline-none w-11 after:w-5 h-6 after:h-5 after:content-[''] after:transition-all rtl:peer-checked:after:-translate-x-full peer-checked:after:translate-x-full after:start-[2px]"></div>
+          <span className="font-medium text-gray-300 text-sm">Automatic</span>
         </label>
       </div>
     </div>

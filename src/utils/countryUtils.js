@@ -1,5 +1,5 @@
 // Разрешенные коды стран для API news, weather, travel согласно API /api/countries
-export const ALLOWED_COUNTRY_CODES = ['gb', 'us', 'no', 'se', 'de'];
+export const ALLOWED_COUNTRY_CODES = ['gb', 'us', 'no', 'se', 'de', 'dk', 'fi', 'nl', 'be'];
 
 // Разрешенные коды стран для API voices
 export const ALLOWED_VOICES_COUNTRY_CODES = ['uk', 'us', 'no', 'fi', 'sw', 'be', 'gm', 'da', 'nl'];
@@ -13,6 +13,10 @@ export const countryCodeMapping = {
   'no': 'no', // Норвегия
   'se': 'se', // Швеция
   'de': 'de', // Германия
+  'dk': 'dk', // Дания
+  'fi': 'fi', // Финляндия
+  'nl': 'nl', // Нидерланды
+  'be': 'be', // Бельгия
   
   // Полные названия стран
   'norway': 'no',
@@ -21,6 +25,10 @@ export const countryCodeMapping = {
   'united kingdom': 'gb',
   'united states': 'us',
   'usa': 'us',
+  'denmark': 'dk',
+  'finland': 'fi',
+  'netherlands': 'nl',
+  'belgium': 'be',
   
   // Другие возможные варианты названий
   'england': 'gb',
@@ -29,6 +37,11 @@ export const countryCodeMapping = {
   'deutschland': 'de',
   'sverige': 'se',
   'norge': 'no',
+  'danmark': 'dk',
+  'suomi': 'fi',
+  'nederland': 'nl',
+  'belgique': 'be',
+  'belgien': 'be',
 };
 
 // Маппинг для API /api/voices 
@@ -69,6 +82,10 @@ export const languageMapping = {
   'no': 'no', // Норвегия -> норвежский
   'se': 'sv', // Швеция -> шведский
   'de': 'de', // Германия -> немецкий
+  'dk': 'da', // Дания -> датский
+  'fi': 'fi', // Финляндия -> финский
+  'nl': 'nl', // Нидерланды -> нидерландский
+  'be': 'nl', // Бельгия -> нидерландский (основной язык)
   
   // Также добавляем маппинг для voices API кодов
   'uk': 'en', // Великобритания -> английский
